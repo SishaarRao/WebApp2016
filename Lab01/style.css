@@ -16,7 +16,8 @@ body{
 
 .BodyText{
     font-family: Aaargh;
-    text-align: center;
+    text-align: left;
+    padding-left: 100;
     font-size: 20;
 }
 
