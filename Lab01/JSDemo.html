@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSDemo</title>
+        <script>
+            function add(){
+                var first = Document.getElementById("input1").value;
+                var second = Document.getElementById("input2").value;
+                var sum = first+second;
+                Document.getElementById("answerdiv").innerHTML= sum;
+                
+        </script>
+    </head>
+    <body>
+        <input id="input1">
+        <input id="input2">
+        <button onClick="add()">Add</button>
+        <div id="answerdiv"></div>
+    </body>
+</html>

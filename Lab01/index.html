@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <head>
+        <title>
+            Submission Form
+        </title>
+        <script type="text/javascript">
+            function setSecondList(list){
+                switch(list){
+                    case "cars":
+                        var select = document.getElementById("second-list")
+                        
+                }
+                        
+            }
+        </script>
+    </head>
+    
+    <body>
+        <div class="text">
+            <h1 class="text-header">Feedback Form</h1>
+            <p style="font-size: 20px">Please submit information and feedback below!</p>
+        </div>
+        <div>
+            <p class="text">First Name: </p>
+            <textarea autofocus required rows="1" cols="30" placeholder="First Name"></textarea>
+            <p class="text">Last Name: </p>
+            <textarea required rows="1" cols="30" placeholder="Last Name"></textarea>
+            <p class="text">Email: </p>
+            <textarea required rows="1" cols="30" placeholder="Email"></textarea>
+            <p class="text">Feedback: </p>
+            <textarea required rows="6" cols="60" placeholder="Feedback"></textarea>
+        </div>
+        
+        <div style="padding-top:20px;">
+            <form>
+                <input type="radio" name="selection" value="dropdown" checked>Dropdown<br>
+                <input type="radio" name="selection" value="view-full-list">View Full List<br>
+            </form>
+            <select>
+                <option value="cars" onclick="setSecondList(cars);">Cars</option>
+                <option value="foods" onclick="setSecondList(foods);">Foods</option>
+            </select>
+            <div>
+                <select id="second-list">
+                </select>
+            </div>
+        </div>
+        
+        <div>
+                <a href="../index.html">Back</a>
+        </div>
+    </body>
+</html>

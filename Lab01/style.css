@@ -1,0 +1,21 @@
+body{
+    background-color: #A9A9A9;
+    padding-left: 20px;
+}
+
+.text{
+    font-family: 'Oswald',sans-serif;
+}
+
+.text-header{
+    font-size: 80px;
+    letter-spacing: 3px;
+}
+
+textarea#styled{
+    width: 200px;
+	height: auto;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: 'Oswald', sans-serif;
+}
