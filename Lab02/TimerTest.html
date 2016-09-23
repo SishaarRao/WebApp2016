@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Timer Test</title>
+        <script type="text/javascript">
+            window.onload=function(){
+                window.setInterval(countDown, 1000);
+            }
+            
+            var time = 60;
+            
+            function countDown(){
+                var timeLeft = document.getElementById('timeLeft');
+                if(timeLeft.hasChildNodes())
+                    timeLeft.removeChild(timeLeft.childNodes[0]);
+                timeLeft.appendChild(document.createTextNode(time));
+                time = time-1;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="timeLeft">
+        </div>
+    </body>
+</html>

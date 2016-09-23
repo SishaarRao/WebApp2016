@@ -7,13 +7,68 @@
             Submission Form
         </title>
         <script type="text/javascript">
-            function setSecondList(list){
-                switch(list){
+            function setSecondList(){
+                var selectBox = document.getElementById("selectBox");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                var selectNew = document.getElementById("second-list")
+                while(selectNew.hasChildNodes())
+                    selectNew.removeChild(selectNew.childNodes[0]);
+                switch(selectedValue){
                     case "cars":
-                        var select = document.getElementById("second-list")
-                        
+                        var toyota = document.createElement("option");
+                        var ford = document.createElement("option");
+                        var honda = document.createElement("option");
+                        var nissan = document.createElement("option");
+                        toyota.appendChild(document.createTextNode("Toyota"));
+                        ford.appendChild(document.createTextNode("Ford"));
+                        honda.appendChild(document.createTextNode("Honda"));
+                        nissan.appendChild(document.createTextNode("Nissan"));
+                        selectNew.appendChild(toyota);
+                        selectNew.appendChild(ford);
+                        selectNew.appendChild(honda);
+                        selectNew.appendChild(nissan);
+                        break;
+                    case "foods":
+                        var burger = document.createElement("option");
+                        var pizza = document.createElement("option");
+                        var sushi = document.createElement("option");
+                        var tostada = document.createElement("option");
+                        burger.appendChild(document.createTextNode("Burger"));
+                        pizza.appendChild(document.createTextNode("Pizza"));
+                        sushi.appendChild(document.createTextNode("Sushi"));
+                        tostada.appendChild(document.createTextNode("Tostada"));
+                        selectNew.appendChild(burger);
+                        selectNew.appendChild(pizza);
+                        selectNew.appendChild(sushi);
+                        selectNew.appendChild(tostada);
+                        break;
                 }
-                        
+                
+            }
+            function setView(radio_name)
+            {
+                var selectNew = document.getElementById("second-list")
+                var selectBox = document.getElementById("selectBox")
+                var oRadio = document.forms[0]
+                var value = 0;
+                for(var i = 0; i < oRadio.length; i++)
+                    if(oRadio[i].checked)
+                        value = oRadio[i].value;
+                switch(value){
+                    case "dropdown":
+                        selectNew.setAttribute("size", "1");
+                        selectBox.setAttribute("size", "1");
+                        break;
+                    case "view-full-list":
+                        selectNew.setAttribute("size", "4");
+                        selectBox.setAttribute("size", "4");
+                        break;
+                }
+            }
+            
+            function clear(){
+                console.log("click");
+                document.getElementById("firstname").nodeValue = "";
             }
         </script>
     </head>
@@ -25,28 +80,36 @@
         </div>
         <div>
             <p class="text">First Name: </p>
-            <textarea autofocus required rows="1" cols="30" placeholder="First Name"></textarea>
+            <textarea id="firstname" autofocus required rows="1" cols="30" placeholder="First Name"></textarea>
             <p class="text">Last Name: </p>
-            <textarea required rows="1" cols="30" placeholder="Last Name"></textarea>
+            <textarea id="lastname" required rows="1" cols="30" placeholder="Last Name"></textarea>
             <p class="text">Email: </p>
-            <textarea required rows="1" cols="30" placeholder="Email"></textarea>
+            <textarea id="email" required rows="1" cols="30" placeholder="Email"></textarea>
             <p class="text">Feedback: </p>
-            <textarea required rows="6" cols="60" placeholder="Feedback"></textarea>
+            <textarea id="feedback" required rows="6" cols="60" placeholder="Feedback"></textarea>
         </div>
         
         <div style="padding-top:20px;">
-            <form>
+            <form onclick="setView('radioform');" name="radioform">
                 <input type="radio" name="selection" value="dropdown" checked>Dropdown<br>
                 <input type="radio" name="selection" value="view-full-list">View Full List<br>
             </form>
-            <select>
-                <option value="cars" onclick="setSecondList(cars);">Cars</option>
-                <option value="foods" onclick="setSecondList(foods);">Foods</option>
+            <select id="selectBox" onchange="setSecondList();">
+                <option value="cars" >Cars</option>
+                <option value="foods">Foods</option>
             </select>
             <div>
                 <select id="second-list">
+                    <option>Toyota</option>
+                    <option>Ford</option>
+                    <option>Honda</option>
+                    <option>Nissan</option>
                 </select>
             </div>
+        </div>
+        
+        <div>
+            <input type="button" onclick="location.href='index.html';" value="Submit" /> 
         </div>
         
         <div>
