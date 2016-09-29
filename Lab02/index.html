@@ -1,11 +1,104 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NFL Quiz</title>
+        <title>Cereals Quiz</title>
         <link rel="stylesheet" href="style.css">
+        <script>
+            var timer;
+            var checkTimer;
+            function onload(){
+                checkTimer = window.setInterval(check, 100);
+                timer = window.setInterval(countDown, 1000);
+            }
+            //var arr = ['Cheerios', 'Frosted Flakes', 'Honey Bunches of Oats', 'Cinnamon Toast Crunch', 
+            //          'Special K', 'Frosted Mini Wheats', 'Lucky Charms'];
+            var arr = ['Cheerios', 'Special K'];
+            function check(){
+                var value = document.getElementById('inputbox').value;
+                //Found a correct input
+                if(arr.indexOf(value) > -1){
+                    var snd = new Audio("ding.wav"); // buffers automatically when created
+                    var textbox = document.getElementById('textbox');
+                    textbox.appendChild(document.createTextNode(value));
+                    textbox.appendChild(document.createElement("br"));
+                    arr.splice(arr.indexOf(value), 1);
+                    document.getElementById('inputbox').value = '';
+                    var left = document.getElementById('numberLeft');
+                    if(left.hasChildNodes()){
+                        left.removeChild(left.childNodes[0]);
+                    }
+                    left.appendChild(document.createTextNode(arr.length));
+                        
+                    
+                    snd.play();
+                }
+                //Check if player won
+                if(arr.length == 0){
+                    var message = document.getElementById('message');
+                    message.appendChild(document.createTextNode('You Win!'))
+                    window.clearInterval(checkTimer);
+                    window.clearInterval(timer);
+                    document.getElementById('play').disabled=true;
+                    document.getElementById('pause').disabled=true;
+                }
+            }
+            
+            var time = 59;
+            
+            function countDown(){
+                if(time <= 0){
+                    window.clearInterval(timer);
+                    window.clearInterval(checkTimer);
+                    var message = document.getElementById('message');
+                    message.appendChild(document.createTextNode('You Lose :('))
+                }
+                var timeLeft = document.getElementById('timeLeft');
+                if(timeLeft.hasChildNodes())
+                    timeLeft.removeChild(timeLeft.childNodes[0]);
+                timeLeft.appendChild(document.createTextNode(time + " seconds"));
+                time = time-1;
+            }
+            var flag = true; //true = timer is going false = timer has stopped
+            function pause(){
+                if(flag){
+                    window.clearInterval(timer);
+                    flag = false;
+                    document.getElementById('inputbox').setAttribute()
+                }
+                
+            }
+            function play(){
+                if(flag == false){
+                    window.setInterval(countDown,1000);
+                    flag =  true;
+                }
+            }
+        </script>
     </head>
-    <body>
-        <div style="font-size:30px;">Can You Guess All the NFL Teams?</div>
-        <div></div>
+    <body onload="onload()">
+        <div style="font-size:30px;text-align:center;">Can You Name the Most Sold Cereals of 2016?</div>
+        <br>
+        <div>
+            <div id="timeLeft" style="font-size:30px;">60 seconds
+            </div>
+            <button id="play" onclick="play()">Play</button>
+            <button id="pause" onclick="pause()">Pause</button>
+        </div>
+        <br>
+        <div>Number Left:
+            <div id="numberLeft">
+                2
+            </div>
+        </div>
+        <br>
+        <div>
+            Input : <input type="text" id="inputbox">
+        </div>
+        <br>
+        <div id="textbox">
+        </div>
+        <br>
+        <div id="message" style="font-size: 25px;">
+        </div>
     </body>
 </html>
