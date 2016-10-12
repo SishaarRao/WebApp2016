@@ -1,0 +1,5 @@
+AuthUserFile /app/.htpasswd
+AuthType Basic
+AuthName "Password Protected Area"
+Require valid-user
+
