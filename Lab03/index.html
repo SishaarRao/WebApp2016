@@ -6,28 +6,48 @@
         <script>
             var timer;
             function onload(){
-                timer = window.setInterval(check, 500);
+                timer = window.setInterval(check, 150);
             }
+            var str = "";
+            var num = -1;
             function check(){
-                var str = document.getElementById("inputbox").value;
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        console.log("Text has been set");
-                        var txtbox = document.getElementById("txt");
-                        while(txtbox.hasChildNodes())
-                            txtbox.removeChild(txtbox.childNodes[0]);
-                        txtbox.appendChild(document.createTextNode(this.responseText));
+                //If str changes value
+                var txtbox = document.getElementById("txt");
+                if(!(str === document.getElementById("inputbox").value)){
+                    console.log("new");
+                    str = document.getElementById("inputbox").value;
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else {
+                        // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                };
-                xmlhttp.open("GET","https://tmrudwick-web.herokuapp.com/SearchQuery/search.php?query="+str,true);
-                xmlhttp.send();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            console.log("Text has been set");
+                            while(txtbox.hasChildNodes())
+                                txtbox.removeChild(txtbox.childNodes[0]);
+                            if(num<0)
+                                txtbox.appendChild(document.createTextNode(this.responseText));
+                            else{
+                                var arr = this.responseText.split(" ");
+                                txtbox.appendChild(document.createTextNode((arr.slice(0,num+1).toString().replace(","," "))));
+                            }
+                        }
+                    };
+                    xmlhttp.open("GET","https://tmrudwick-web.herokuapp.com/SearchQuery/search.php?query="+str,true);
+                    xmlhttp.send();
+                }
+                else if(document.getElementById("inputbox").value === "")
+                    while(txtbox.hasChildNodes())
+                        txtbox.removeChild(txtbox.childNodes[0]);
+                
+                //Check Response Box
+                if(document.getElementById("numresponses").value === "")
+                    num = -1;
+                else
+                    num = parseInt(document.getElementById("numresponses").value);
             }
         </script>
     </head>
@@ -35,6 +55,9 @@
         <div style="text-align:center;">
             <div style="text-align:center;font-size:50px; font-style:italic;">
                 ZipSearch
+            </div>
+            <div>
+                Response # : <input type="text" id="numresponses">
             </div>
             <div>
                 Input : <input type="text" id="inputbox">

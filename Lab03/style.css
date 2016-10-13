@@ -3,4 +3,5 @@ html,body{
     font-family: Verdana,sans-serif;
     padding: 20px;
     letter-spacing: 3px;
+    word-wrap: break-word;
 }
