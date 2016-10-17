@@ -6,14 +6,15 @@
         <script>
             var timer;
             function onload(){
-                timer = window.setInterval(check, 150);
+                timer = window.setInterval(check, 300);
             }
             var str = "";
             var num = -1;
             function check(){
                 //If str changes value
                 var txtbox = document.getElementById("txt");
-                if(!(str === document.getElementById("inputbox").value)){
+                if(!(str === document.getElementById("inputbox").value))
+                {
                     console.log("new");
                     str = document.getElementById("inputbox").value;
                     if (window.XMLHttpRequest) {
@@ -57,7 +58,7 @@
                 ZipSearch
             </div>
             <div>
-                Response # : <input type="text" id="numresponses">
+                Response # : <input onkeyup="" type="text" id="numresponses">
             </div>
             <div>
                 Input : <input type="text" id="inputbox">
