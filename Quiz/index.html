@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Color Picker</title>
+        <link rel="stylesheet" href="style.css">
+        
+        <script>
+            function updateColor(){
+                var color = document.getElementById("inputbox").value;
+                document.getElementById("colorBox").style.backgroundColor = color; 
+            }
+        </script>
+        
+    </head>
+    <body>
+        <h1>Sishaar Rao</h1>
+        <h1>Period 7</h1>
+        <h1>I will not distribute this to other students during or after this quiz</h1>
+        
+        <input id="inputbox">
+        <br>
+        <button onclick="updateColor()">UpdateColor</button>
+        <br>
+        <div class="foo" id="colorBox">
+        </div>
+    </body>
+</html>

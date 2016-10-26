@@ -4,12 +4,69 @@
         <title>ZipSearch</title>
         <link rel="stylesheet" href="style.css">
         <script>
-            var timer;
-            function onload(){
-                timer = window.setInterval(check, 300);
-            }
+            var clock;
             var str = "";
             var num = -1;
+            var timer = 3;
+            function onload(){
+            }
+            function decreaseTime(){
+                timer = timer-1;
+                console.log("time:" + timer);
+                if(timer < 0)
+                {
+                    if(!(document.getElementById("inputbox").value === ""))
+                        check2();
+                    clearInterval(clock);
+                }
+                
+            }
+            function setTime()
+            {
+                console.log("Set Time")
+                if(document.getElementById("inputbox").value === "")
+                    timer = 3;
+                else
+                    timer = 3;
+                clearInterval(clock);
+                clock = window.setInterval(decreaseTime, 1000);
+
+            }
+            function check2(){
+                //If str changes value
+                var txtbox = document.getElementById("txt");
+                console.log("new");
+                str = document.getElementById("inputbox").value;
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log("Text has been set");
+                        while(txtbox.hasChildNodes())
+                            txtbox.removeChild(txtbox.childNodes[0]);
+                        if(num<0)
+                            txtbox.appendChild(document.createTextNode(this.responseText));
+                        else{
+                            var arr = this.responseText.split(" ");
+                            txtbox.appendChild(document.createTextNode((arr.slice(0,num).toString())));
+                        }
+                    }
+                };
+                xmlhttp.open("GET","https://tmrudwick-web.herokuapp.com/SearchQuery/search.php?query="+str,true);
+                xmlhttp.send();
+                
+                
+                //Check Response Box
+                if(document.getElementById("numresponses").value === "")
+                    num = -1;
+                else
+                    num = parseInt(document.getElementById("numresponses").value);
+            }
             function check(){
                 //If str changes value
                 var txtbox = document.getElementById("txt");
@@ -58,10 +115,10 @@
                 ZipSearch
             </div>
             <div>
-                Response # : <input onkeyup="" type="text" id="numresponses">
+                Response # : <input  type="text" id="numresponses">
             </div>
             <div>
-                Input : <input type="text" id="inputbox">
+                Input : <input onkeyup="setTime()" type="text" id="inputbox">
             </div>
             <div id="txt">
 
