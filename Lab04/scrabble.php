@@ -1,5 +1,6 @@
 <?php
-    $key = $_REQUEST["key"];
+    //$key = $_REQUEST["key"];
+    $key = "thle";
     $myfile = fopen("words.txt", "r") or die("Unable to open file!");
     $results;
     $pattern = "/\s+[".$key."]+\s/gm";
