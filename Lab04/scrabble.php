@@ -6,6 +6,6 @@
     $pattern = "/\s+[".$key."]+\s/gm";
     preg_match_all($pattern, $myfile, $results);
     //echo fread($myfile,filesize("words.txt"));
-    echo($results);
+    echo($results[0][0]);
     fclose($myfile);
 ?>
