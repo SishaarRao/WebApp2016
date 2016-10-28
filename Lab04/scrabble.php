@@ -1,11 +1,12 @@
 <?php
     //$key = $_REQUEST["key"];
-    $key = "thle";
+    $key = "hello";
     $myfile = fopen("words.txt", "r") or die("Unable to open file!");
+    $mywords = fread($myfile,filesize("words.txt"));
+    $pattern = '/\n+['.$key.']{3,}+\n/';
     $results;
-    $pattern = "/\s+[".$key."]+\s/gm";
-    preg_match_all($pattern, $myfile, $results);
+    preg_match_all($pattern, $mywords, $results);
     //echo fread($myfile,filesize("words.txt"));
-    echo($results[0][0]);
+    print_r(array_values($results));
     fclose($myfile);
 ?>
