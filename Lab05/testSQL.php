@@ -12,7 +12,7 @@
          CREATE TABLE Football(
             TeamName varchar(255), Number of Wins int
          )
-    ESCAPED;
+ESCAPED;
     
     $ret = pg_query($query);
     if(!$ret){
