@@ -1,5 +1,6 @@
 <?php
     //instantiate our DB object
+    echo("helloWorld");
     $host="host=ec2-174-129-223-35.compute-1.amazonaws.com";
     $dbname="dbname=db2f65s4cr211d";
     $user="user=jjmirjedzqvoxq";
