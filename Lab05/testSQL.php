@@ -10,7 +10,7 @@
     //Create a table try/catch
     $query= <<<ESCAPED
          CREATE TABLE Football(
-            TeamName varchar(255), Number of Wins int
+            TeamName varchar(255), NumberOfWins int
          )
 ESCAPED;
     
