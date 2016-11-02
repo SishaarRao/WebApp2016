@@ -23,6 +23,6 @@
         if($flag)
             array_push($final, $value);
     }
-    print_r(array_values($final));
+    echo(array_values($final));
     fclose($myfile);
 ?>
