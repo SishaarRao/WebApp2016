@@ -7,12 +7,13 @@
     $password="password=eWgK0zDk65YHO_pFDM8VHftLzp";
     $db = pg_connect($host." ".$dbname." ".$user." ".$port." ".$password);
     //Create a table try/catch
+    /*
     $query= <<<ESCAPED
          CREATE TABLE Football(
             TeamName varchar(255), NumberOfWins int
          )
 ESCAPED;
-    
+    */
     $ret = pg_query($query);
     if(!$ret){
         echo(pg_last_error($db));
@@ -21,7 +22,11 @@ ESCAPED;
         echo("success");
     }
     //Add some data
-
+    $query = <<<ESCAPED
+        INSERT INTO Football VALUES(
+            Redskins, 4
+        )
+ESCAPED;
     //Query our table
 
 ?>
