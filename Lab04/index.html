@@ -7,7 +7,7 @@
         <script>
             function search(){
             console.log("new");
-                    str = document.getElementById("letters").value;
+                    var letters = document.getElementById("letters").value;
                     if (window.XMLHttpRequest) {
                         // code for IE7+, Firefox, Chrome, Opera, Safari
                         xmlhttp = new XMLHttpRequest();
@@ -27,7 +27,7 @@
                             
                         }
                     };
-                    xmlhttp.open("GET","https://webapptest-srao.herokuapp.com/Lab04/scrabble.php?key="+str,true);
+                    xmlhttp.open("GET","https://webapptest-srao.herokuapp.com/Lab04/scrabble.php?key="+letter,true);
                     xmlhttp.send();
             }
         </script>
