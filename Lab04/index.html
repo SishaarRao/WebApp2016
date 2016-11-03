@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Scrabble Searcher</title>
+        <link rel="stylesheet" href="style.css">
+        
+        <script>
+            function search(){
+            console.log("new");
+                    str = document.getElementById("letters").value;
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else {
+                        // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var txtbox = document.getElementById("txt");
+                            console.log("Text has been set");
+                            while(txtbox.hasChildNodes())
+                                txtbox.removeChild(txtbox.childNodes[0]);
+                            
+                            var arr = this.responseText.split(" ");
+                            txtbox.appendChild(document.createTextNode(arr));
+                            
+                        }
+                    };
+                    xmlhttp.open("GET","https://webapptest-srao.herokuapp.com/Lab04/scrabble.php?key="+str,true);
+                    xmlhttp.send();
+            }
+        </script>
+    </head>
+    <body>
+        <div style="text-align:center;font-size:50px; font-style:italic;">
+                Scrabble Searcher
+            </div>
+            <div style="text-align:center;">
+                Letters: <input  type="text" id="letters">
+                <button onclick="search()">Search</button>
+            </div>
+            <div id="txt" style="text-align:center;">
+
+            </div>
+    </body>
+</html>

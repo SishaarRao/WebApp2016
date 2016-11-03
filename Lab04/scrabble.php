@@ -7,7 +7,6 @@
     preg_match_all($pattern, $mywords, $results);
     //echo fread($myfile,filesize("words.txt"));
     $results = $results[0];
-    $final = array();
     foreach($results as $value){
         $flag = true;
         foreach(str_split($value) as $letter){
@@ -21,8 +20,7 @@
             }
         }
         if($flag)
-            array_push($final, $value);
+            echo($value."\n");
     }
-    echo(array_values($final));
     fclose($myfile);
 ?>

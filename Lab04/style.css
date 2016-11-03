@@ -1,0 +1,7 @@
+html,body{
+    background-color: lightgray;
+    font-family: Verdana,sans-serif;
+    padding: 20px;
+    letter-spacing: 3px;
+    word-wrap: break-word;
+}
