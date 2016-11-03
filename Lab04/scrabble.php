@@ -1,6 +1,6 @@
 <?php
-    //$key = $_REQUEST["key"];
-    $key = "hello";
+    $key = $_REQUEST["key"];
+    //$key = "hello";
     $myfile = fopen("words2.txt", "r") or die("Unable to open file!");
     $mywords = fread($myfile,filesize("words2.txt"));
     $pattern = '/\\b["'.$key.'"]{3,}+\\b/';
