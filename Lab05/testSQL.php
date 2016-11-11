@@ -14,6 +14,12 @@
          )
 ESCAPED;
     */
+    //Add some data
+    $query = <<<ESCAPED
+        INSERT INTO Football VALUES(
+            Redskins, 4
+        )
+ESCAPED;
     $ret = pg_query($query);
     if(!$ret){
         echo(pg_last_error($db));
@@ -21,12 +27,6 @@ ESCAPED;
     else{
         echo("success");
     }
-    //Add some data
-    $query = <<<ESCAPED
-        INSERT INTO Football VALUES(
-            Redskins, 4
-        )
-ESCAPED;
     //Query our table
 
 ?>
