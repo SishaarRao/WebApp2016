@@ -30,7 +30,7 @@ ESCAPED;
     }
     else{
         while ($row = pg_fetch_row($ret)) {
-            echo "Team: $row[0] Num of Wins: $row[1]";
+            echo("Team:".$row[0]."Num of Wins:".$row[1]);
             //echo "<br />\n";
         }
         echo("success");
