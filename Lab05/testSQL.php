@@ -5,7 +5,7 @@
     $user="user=jjmirjedzqvoxq";
     $port="port=5432";
     $password="password=eWgK0zDk65YHO_pFDM8VHftLzp";
-    $db = pg_connect($host." ".$dbname." ".$user." ".$port." ".$password);
+    $db = pg_pconnect($host." ".$dbname." ".$user." ".$port." ".$password);
     //Create a table try/catch
     /*
     $query= <<<ESCAPED
@@ -22,10 +22,8 @@ ESCAPED;
         )
 ESCAPED;
     */
-    $query = <<<ESCAPED
-        SELECT * FROM Football
-    
-ESCAPED;
+    $query = "SELECT * FROM Football";
+
     $ret = pg_query($query);
     if(!$ret){
         echo(pg_last_error($db));
