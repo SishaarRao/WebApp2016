@@ -13,10 +13,11 @@
         echo(pg_last_error($db));
     }
     else{
+        echo("<table>");
         while ($row = pg_fetch_row($ret)) {
-            echo("Team:".$row[0]."Num of Wins:".$row[1]."\n");
-            //echo "<br />\n";
+            echo("<tr><td>Team Name: ".$row[0]."</td>");
+            echo("<td>Number of Wins: ".$row[1]."</td></tr>");
         }
-        echo("success");
+        echo("</table>");
     }
 ?>

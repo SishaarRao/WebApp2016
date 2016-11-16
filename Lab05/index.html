@@ -42,8 +42,7 @@
                         while(message.hasChildNodes())
                             message.removeChild(message.childNodes[0]);
 
-                        var arr = this.responseText.split(" ");
-                        message.appendChild(document.createTextNode(arr));
+                        message.innerHTML = this.responseText;
                     }
                 };
                 xmlhttp.open("GET","https://webapptest-srao.herokuapp.com/Lab05/display.php",true);
