@@ -16,7 +16,7 @@ ESCAPED;
     */
     //Add some data
     
-    $query = "INSERT INTO Football VALUES(Redskins, 4)";
+    $query = "INSERT INTO Football VALUES('Redskins', 4)";
     $ret = pg_query($query);
     if(!$ret){
         echo(pg_last_error($db));
