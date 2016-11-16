@@ -5,7 +5,7 @@
     $user="user=jjmirjedzqvoxq";
     $port="port=5432";
     $password="password=eWgK0zDk65YHO_pFDM8VHftLzp";
-    $db = pg_pconnect($host." ".$dbname." ".$user." ".$port." ".$password);
+    $db = pg_connect($host." ".$dbname." ".$user." ".$port." ".$password);
     //Create a table try/catch
     /*
     $query= <<<ESCAPED
@@ -33,6 +33,7 @@ ESCAPED;
             echo "Team: $row[0] Num of Wins: $row[1]";
             //echo "<br />\n";
         }
+        echo("success");
     }
     //Query our table
 
