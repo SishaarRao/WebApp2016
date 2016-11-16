@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("div").css("border","2px dashed");
+                $("div").click(function(){
+                    $(this).fadeOut();
+                })
+                $("div").each(function(){
+                    $(this).html("This is a div tag with ID:"+$(this).attr("id"));
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <div id="a">boos</div>
+        <br>
+        <div id="b">boos</div>
+        <br>
+        <div id="c">boos</div>
+        <br>
+        <div id="d">boos</div>
+        <br>
+        <div id="e">boos</div>
+        <br>
+        <div id="f">boos</div>
+    </body>
+</html>

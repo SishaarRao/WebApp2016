@@ -15,17 +15,26 @@
 ESCAPED;
     */
     //Add some data
+    /*
     $query = <<<ESCAPED
         INSERT INTO Football VALUES(
             Redskins, 4
         )
+ESCAPED;
+    */
+    $query = <<<ESCAPED
+        SELECT * FROM Football
+    
 ESCAPED;
     $ret = pg_query($query);
     if(!$ret){
         echo(pg_last_error($db));
     }
     else{
-        echo("success");
+        while ($row = pg_fetch_row($ret)) {
+            echo "Team: $row[0] Num of Wins: $row[1]";
+            //echo "<br />\n";
+        }
     }
     //Query our table
 
