@@ -43,7 +43,7 @@
                             message.removeChild(message.childNodes[0]);
 
                         var arr = this.responseText.split(" ");
-                        message.appendChild(message.createTextNode(arr));
+                        message.appendChild(document.createTextNode(arr));
                     }
                 };
                 xmlhttp.open("GET","https://webapptest-srao.herokuapp.com/Lab05/display.php",true);
