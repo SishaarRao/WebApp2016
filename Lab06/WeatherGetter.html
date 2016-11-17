@@ -6,7 +6,7 @@
         <script>
             function sendRequest(){
                 $.ajax({
-                    url: "http://api.openweathermap.org/data/2.5/weather?zip="+$("#zip").val()+",us&APPID=1e7a94c19cb3bf3a5269fc47cefe409c",
+                    url: "http://api.openweathermap.org/data/2.5/weather",
                     success:function(response){
                         var sunrise = response.sys.sunrise;
                         var sunset = response.sys.sunset;
@@ -33,6 +33,10 @@
                         
                         
                         $("#output").html("Sunrise: "+formattedTime1+"<br>"+"Sunset: "+formattedTime2);
+                    },
+                    data:{
+                        zip:$("#zip").val()+",us",
+                        appid:"1e7a94c19cb3bf3a5269fc47cefe409c"
                     }
                 })}
         </script>
