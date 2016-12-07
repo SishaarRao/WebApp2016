@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Lab</title>
+    <script>
+        window.onload=function(){
+            console.log("started function");
+            //var teamname = document.getElementById("teamname").value;
+            //var wins = document.getElementById("wins").value;
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var insert = document.getElementById("insert");
+                    insert.innerHTML = this.responseText;
+                    console.log("pasted");
+                }
+            };
+            xmlhttp.open("GET", "example.php?q=PhlyDaily&maxResults=5", true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="insert">
+
+    </div>
+</body>
+
+</html>
