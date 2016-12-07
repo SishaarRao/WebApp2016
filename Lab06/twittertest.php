@@ -10,6 +10,6 @@
     $content = $connection->get("account/verify_credentials");
     //var_dump($content);
 
-    $statuses = $connection->get("search/tweets", ["q" => "twitterapi", "screen_name" => $name]);
+    $statuses = $connection->get("search/tweets", ["q" => "twitterapi", "screen_name" => $name.""]);
     print_r($statuses);
 ?>
