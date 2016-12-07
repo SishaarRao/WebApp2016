@@ -3,8 +3,9 @@
 
 <head>
     <title>API Lab</title>
+    <link rel="stylesheet" href="style.css">
     <script>
-        window.onload=function(){
+        function search() {
             console.log("started function");
             //var teamname = document.getElementById("teamname").value;
             //var wins = document.getElementById("wins").value;
@@ -18,20 +19,57 @@
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var insert = document.getElementById("insert");
-                    insert.innerHTML = this.responseText;
-                    console.log("pasted");
+                    var score = measure(this.responseText);
+                    document.getElementById("insert").innerHTML = score + "";
+                    if(score<20)
+                        document.getElementById("message").innerHTML = "Simply Dissapointing";
+                    else if(score<40)
+                        document.getElementById("message").innerHTML = "Not Bad. Not Good";
+                    else if(score<60)
+                        document.getElementById("message").innerHTML = "Nice! Keep up the harvesting of the memes";
+                    else {
+                        document.getElementById("message").innerHTML = "Dank af bro";
+                    }
                 }
             };
-            xmlhttp.open("GET", "https://webapptest-srao.herokuapp.com/Lab06/twittertest.php?name=SpideyLi", true);
+            var name = document.getElementById("handle").value;
+            xmlhttp.open("GET", "https://webapptest-srao.herokuapp.com/Lab06/twittertest.php?name=" + name, true);
             xmlhttp.send();
+        }
+
+        function measure(str) {
+            var count =
+                (str.match(/harambe/gi) || []).length +
+                (str.match(/pepe/gi) || []).length +
+                (str.match(/biden/gi) || []).length;
+            if (count == 0)
+                return 10;
+            else if (count >= 10)
+                return 100;
+            else {
+                return (count / 25) * 90 + 10;
+            }
         }
     </script>
 </head>
 
 <body>
-    <div id="insert">
 
+    <div style="text-align:center;">
+        <div style="text-align:center;font-size:50px; font-style:italic;">
+            The Meme Index
+        </div>
+        <div>
+            Twitter Handle: <input name="handle" type="text" id="handle">
+            <button onclick="search()">Search</button>
+        </div>
+        Your Score:
+        <div id=insert>
+        </div>
+        <div id=message>
+        </div>
     </div>
+
 </body>
 
 </html>
