@@ -38,6 +38,8 @@
         }
 
         function measure(str) {
+           var k = /hi/gi
+           var k2 = new RegExp("/hi/gi");
             var count =
                 (str.match(/harambe/gi) || []).length +
                 (str.match(/pepe/gi) || []).length +
