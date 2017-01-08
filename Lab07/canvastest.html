@@ -9,25 +9,57 @@
         }
     </style>
     <script type="text/javascript">
-        var ctx;
+        var dotPositions = [];
+        var context;
         var canvas;
         window.onload = function() {
             canvas = document.getElementById("can");
-            ctx = canvas.getContext('2d');
-            canvas.addEventListener("mousedown", clicked)
+            context = canvas.getContext('2d');
+            canvas.addEventListener('mousedown', putPoint);
+            canvas.addEventListener('mousemove', drawPoint);
+            canvas.addEventListener('mouseup', stopPoint);
         }
 
-        function clicked(evt) {
-            console.log(evt.layerX);
-            console.log(evt.layerY);
-            ctx.rect(evt.layerX, evt.layerY, 10, 10);
-            ctx.stroke();
+        var radius = 50;
+        var nStartX = 0;
+        var nStartY = 0;
+        var bIsDrawing = false;
+
+        var putPoint = function(evt) {
+            nStartX = evt.layerX;
+            nStartY = evt.layerY;
+            bIsDrawing = true;
+            radius = 0;
         }
+        var drawPoint = function(evt) {
+            if (!bIsDrawing)
+                return;
+            var nDeltaX = nStartX - evt.layerX;
+            var nDeltaY = nStartY - evt.layerY;
+            radius = Math.sqrt(nDeltaX * nDeltaX + nDeltaY * nDeltaY)
+            context.beginPath();
+            context.arc(nStartX, nStartY, radius, 0, Math.PI * 2);
+            //context.fillStyle = "silver";
+            context.stroke();
+            dotPositions.push([nStartX, nStartY, radius]);
+            context.fill()
+
+        }
+        var stopPoint = function(e) {
+            bIsDrawing = false;
+        }
+
+        function clearCanvas() {
+            console.log("clear");
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
     </script>
 </head>
 
 <body>
     <canvas id="can" width="600" height="400"></canvas>
+    <button onclick="clearCanvas()">Clear</button>
 </body>
 
 </html>
