@@ -5,7 +5,7 @@
     $port="port=5432";
     $password="password=eWgK0zDk65YHO_pFDM8VHftLzp";
     $db = pg_pconnect($host." ".$dbname." ".$user." ".$port." ".$password);
-    
+
     $query = "SELECT * FROM Football";
 
     $ret = pg_query($query);

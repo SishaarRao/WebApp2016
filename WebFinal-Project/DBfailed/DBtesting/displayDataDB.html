@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<!-- Created by Sishaar Rao -->
+<html>
+
+<head>
+    <script>
+        window.onload = function() {
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = document.getElementById("response");
+                    response.innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "https://webfinal-project.herokuapp.com/displayDataDB.php", true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="response"></div>
+</body>
+
+</html>
